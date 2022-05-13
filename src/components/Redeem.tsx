@@ -30,6 +30,8 @@ const Redeem = () => {
     const [allowance, setAllowance] = useState(0);
     const [tokenBalance, setTokenBalance] = useState(0);
     const [tokenDecimals, setTokenDecimals] = useState(0);
+    const [maxRedeem, setMaxRedeem] = useState(0);
+    const [tearsBalance, setTearsBalance] = useState(0);
     
     useEffect(() => {
         if (chainId === ChainID.BSC && provider && token) {
@@ -53,10 +55,18 @@ const Redeem = () => {
     }, [tokenContract])
 
     useEffect(() => {
+        if (contract && token && tokenDecimals > 0) {
+            contract!.getOutput(token, utils.parseUnits(amount.toString(), tokenDecimals)).then((v) => {setOutput(parseFloat(utils.formatEther(v)))}) 
+        }
+
+    }, [amount, contract, token, tokenDecimals])
+
+    useEffect(() => {
         if (tearsContract && contract && token && tokenDecimals > 0) {
             tearsContract.totalSupply().then((v) => {setTS(parseFloat(utils.formatEther(v)))});
-            contract!.getOutput(token, utils.parseUnits(amount.toString(), tokenDecimals)).then((v) => {setOutput(parseFloat(utils.formatEther(v)))}) 
             tearsContract.balanceOf(contract.address).then((v) => {setBalance(parseFloat(utils.formatEther(v)))})
+            contract.maxRedeem().then((v) => {setMaxRedeem(parseFloat(utils.formatEther(v)))})
+            tearsContract.balanceOf(address).then((v) => { setTearsBalance(parseFloat(utils.formatEther(v))) })
         }
         if (tokenContract && contract && address && tokenDecimals > 0) {
             tokenContract.allowance(address, contract.address).then((v) => setAllowance(parseFloat(utils.formatUnits(v, tokenDecimals))))
@@ -79,7 +89,14 @@ const Redeem = () => {
         if (tokenContract && chainId) {
             setTxActive(true);
             if (allowance >= amount) {
-                contract?.redeem(token, utils.parseUnits(amount.toString(), tokenDecimals)).then(() =>{
+                contract?.redeem(token, utils.parseUnits(amount.toString(), tokenDecimals)).then((tx) =>{
+                    tx.wait(3).then(() => {
+                        setError("")
+                        setTxActive(false)
+                    }).catch((e) => {
+                        setError(e.data.message)
+                        setTxActive(false)
+                    })
                 }).catch((e) => {
                     setError(e.data.message);
                 }).finally(() => setTxActive(false))
@@ -130,7 +147,7 @@ const Redeem = () => {
                     <span>You are gonna get {output.toLocaleString()} tears or {percent} % of supply.</span>
                 </div>
                 <div className="redeem-submit">
-                    <button disabled={txActive || amount == 0} onClick={() => {handleRedeem()}}>Redeem</button>
+                    <button disabled={txActive || amount == 0 || output+tearsBalance > maxRedeem} onClick={() => {handleRedeem()}}>Redeem</button>
                     <div className="error">{error}</div>
                 </div>
                 <div>
