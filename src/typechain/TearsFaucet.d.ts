@@ -21,7 +21,7 @@ import type { TypedEventFilter, TypedEvent, TypedListener } from "./common";
 
 interface TearsFaucetInterface extends ethers.utils.Interface {
   functions: {
-    "getOutput(uint256)": FunctionFragment;
+    "getOutput(address,uint256)": FunctionFragment;
     "luna()": FunctionFragment;
     "maxRedeem()": FunctionFragment;
     "owner()": FunctionFragment;
@@ -34,7 +34,7 @@ interface TearsFaucetInterface extends ethers.utils.Interface {
 
   encodeFunctionData(
     functionFragment: "getOutput",
-    values: [BigNumberish]
+    values: [string, BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "luna", values?: undefined): string;
   encodeFunctionData(functionFragment: "maxRedeem", values?: undefined): string;
@@ -126,6 +126,7 @@ export class TearsFaucet extends BaseContract {
 
   functions: {
     getOutput(
+      token: string,
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
@@ -159,6 +160,7 @@ export class TearsFaucet extends BaseContract {
   };
 
   getOutput(
+    token: string,
     amount: BigNumberish,
     overrides?: CallOverrides
   ): Promise<BigNumber>;
@@ -192,6 +194,7 @@ export class TearsFaucet extends BaseContract {
 
   callStatic: {
     getOutput(
+      token: string,
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -240,6 +243,7 @@ export class TearsFaucet extends BaseContract {
 
   estimateGas: {
     getOutput(
+      token: string,
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -274,6 +278,7 @@ export class TearsFaucet extends BaseContract {
 
   populateTransaction: {
     getOutput(
+      token: string,
       amount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;

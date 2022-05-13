@@ -65,6 +65,10 @@ h1 {
   margin: 1em;
 }
 
+.redeem .error {
+  color: red;
+}
+
 .redeem select, .redeem input, .redeem button, .wallet-container button {
   border-radius: 10px;
   font-size: 2em;
