@@ -86,10 +86,10 @@ const Redeem = () => {
             } else {
                 tokenContract!.approve(Contracts[chainId!].FAUCET, utils.parseUnits(amount.toString(), tokenDecimals)).then((tx) => {
                     setError("Approving...")
-                    tx.wait().then(() => {
+                    tx.wait(3).then(() => {
                         contract!.redeem(token, utils.parseUnits(amount.toString(), tokenDecimals)).then((tx) =>{
                             setError("Redeeming...")
-                            tx.wait().then(() => {
+                            tx.wait(3).then(() => {
                                 setError("")
                             })
                         }).catch((e) => {
