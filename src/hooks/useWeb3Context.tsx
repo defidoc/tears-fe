@@ -12,6 +12,7 @@ export type Web3Info = {
     provider: Web3Provider | null;
     connected: boolean;
     web3Modal: Web3Modal;
+    inFocus: boolean;
     connect: () => void;
     disconnect: () => void;
 }
@@ -68,6 +69,7 @@ export const Web3ContextProvider = ({ children }: Props) => {
     const [provider, setProvider] = useState<Web3Provider | null>(null);
     const [chainId, setChainId] = useState<number | null>(null);
     const [connected, setConnected] = useState(false);
+    const [inFocus, setInFocus] = useState(true);
 
     const _setListeners = useCallback(
         (locProvider:any) => {
@@ -126,6 +128,16 @@ export const Web3ContextProvider = ({ children }: Props) => {
         },
         [provider, web3Modal, connected]
     )
+
+    useEffect(() => {
+        window.addEventListener("focus", () => {
+            setInFocus(true)
+        })
+        window.addEventListener("blur", () => {
+            setInFocus(false)
+        })
+    }, [])
+
     const web3Info = useMemo(
         () => ({
             address,
@@ -133,6 +145,7 @@ export const Web3ContextProvider = ({ children }: Props) => {
             provider,
             connected,
             web3Modal,
+            inFocus,
             connect,
             disconnect
         }), [
@@ -141,6 +154,7 @@ export const Web3ContextProvider = ({ children }: Props) => {
             provider,
             connected,
             web3Modal,
+            inFocus,
             connect,
             disconnect
         ],

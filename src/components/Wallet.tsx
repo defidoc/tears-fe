@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useWeb3Context } from '../hooks/useWeb3Context';
-import { Networks } from '../constants';
+import { DEFAULT_CHAIN, Networks } from '../constants';
+import { ethers } from 'ethers';
 
 
 const Wallet = () => {
-    const { address, provider, web3Modal, connected, connect, disconnect, chainId} = useWeb3Context()
+    const { address, provider, web3Modal, connected, connect, disconnect, chainId, inFocus} = useWeb3Context()
  
     useEffect(() => {
         // initiate web3modal
@@ -17,6 +18,17 @@ const Wallet = () => {
             connect();
         }
     }, [web3Modal])
+
+    useEffect(() => {
+        if (inFocus) {
+            if (chainId && chainId !== DEFAULT_CHAIN) {
+                window.ethereum.request({
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: ethers.utils.hexlify(DEFAULT_CHAIN) }]
+                });
+            }
+        }
+    }, [chainId, inFocus])
 
     return (
         <div className="wallet-container">

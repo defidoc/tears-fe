@@ -23,8 +23,8 @@ const Explain = () => {
             </p>
             <h2>Contracts</h2>
             <p>
-                <div>Token: <a href="https://bscscan.com/token/0xb8D6DbE259b2be1E921758fC1A390dEfcF209887" target="_blank">0xb8D6DbE259b2be1E921758fC1A390dEfcF209887</a></div>
-                <div>Faucet: <a href="https://bscscan.com/address/0x649E29BbeCd3aFb3428C4E77A2A6b7aa2115597a" target="_blank">0x649E29BbeCd3aFb3428C4E77A2A6b7aa2115597a</a></div>
+                <span>Token: <a href="https://bscscan.com/token/0xb8D6DbE259b2be1E921758fC1A390dEfcF209887" target="_blank">0xb8D6DbE259b2be1E921758fC1A390dEfcF209887</a></span>
+                <span>Faucet: <a href="https://bscscan.com/address/0x649E29BbeCd3aFb3428C4E77A2A6b7aa2115597a" target="_blank">0x649E29BbeCd3aFb3428C4E77A2A6b7aa2115597a</a></span>
             </p>
         </div>
 
