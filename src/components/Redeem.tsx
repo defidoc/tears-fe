@@ -91,10 +91,15 @@ const Redeem = () => {
                             setError("Redeeming...")
                             tx.wait(3).then(() => {
                                 setError("")
+                                setTxActive(false)
+                            }).catch((e) => {
+                                setError(e.data.message)
+                                setTxActive(false)
                             })
                         }).catch((e) => {
                             setError(e.data.message);
-                        }).finally(() => setTxActive(false))
+                            setTxActive(false)
+                        })
                     })
                 }).catch((e) => {
                     setError(e.data.message)
