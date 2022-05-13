@@ -7,7 +7,9 @@ const Explain = () => {
             </p>
             <h2>Do $TEARS have any value?</h2>
             <p>
-                No, not at this point. We just wanted to distribute them to comemorate these unfortunate events. Hopefully we will be able to provide liquidity in the future once the markets recover.
+                No, not at this point. We just wanted to distribute them to comemorate these unfortunate events. Hopefully we will be able to provide liquidity in the future once the markets recover. 
+                
+                We are also thinking about NFTs. Open to ideas!
             </p>
             <h2>Which network is this on?</h2>
             <p>
