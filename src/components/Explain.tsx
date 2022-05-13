@@ -29,8 +29,8 @@ const Explain = () => {
             </p>
             <h2>Contracts</h2>
             <p>
-                <span>Token: <a href="https://bscscan.com/token/0xb8D6DbE259b2be1E921758fC1A390dEfcF209887" target="_blank">0xb8D6DbE259b2be1E921758fC1A390dEfcF209887</a></span>
-                <span>Faucet: <a href="https://bscscan.com/address/0x649E29BbeCd3aFb3428C4E77A2A6b7aa2115597a" target="_blank">0x649E29BbeCd3aFb3428C4E77A2A6b7aa2115597a</a></span>
+                <span>Token: <a href="https://bscscan.com/token/0x24c79b664846e63265C99fD239227DE2e239d8Fb" target="_blank">0x24c79b664846e63265C99fD239227DE2e239d8Fb</a></span>
+                <span>Faucet: <a href="https://bscscan.com/address/0xFAa2351b07A67D43A73eB8a9442A895790E80d85" target="_blank">0xFAa2351b07A67D43A73eB8a9442A895790E80d85</a></span>
             </p>
         </div>
 
