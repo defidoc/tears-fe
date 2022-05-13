@@ -53,9 +53,9 @@ const Redeem = () => {
     }, [tokenContract])
 
     useEffect(() => {
-        if (tearsContract && contract && token) {
+        if (tearsContract && contract && token && tokenDecimals > 0) {
             tearsContract.totalSupply().then((v) => {setTS(parseFloat(utils.formatEther(v)))});
-            contract!.getOutput(token, utils.parseEther(amount.toString())).then((v) => {setOutput(parseFloat(utils.formatEther(v)))}) 
+            contract!.getOutput(token, utils.parseUnits(amount.toString(), tokenDecimals)).then((v) => {setOutput(parseFloat(utils.formatEther(v)))}) 
             tearsContract.balanceOf(contract.address).then((v) => {setBalance(parseFloat(utils.formatEther(v)))})
         }
         if (tokenContract && contract && address && tokenDecimals > 0) {
