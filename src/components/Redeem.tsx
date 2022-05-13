@@ -151,7 +151,8 @@ const Redeem = () => {
                     <div className="error">{error}</div>
                 </div>
                 <div>
-                    Remaining faucet balance: {balance.toLocaleString()}
+                    <div>Remaining faucet balance: {balance.toLocaleString()}</div>
+                    <div>Your TEARS balance: {tearsBalance.toLocaleString()}</div>
                 </div>
             </div>
             :
