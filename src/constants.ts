@@ -60,6 +60,7 @@ export const Networks:IRpcUrls = {
     [ChainID.POLY_TESTNET] : "Mumbai Testnet",
     [ChainID.AVAX_TESTNET] : "AVAX Testnet",
     [ChainID.FTM_TESTNET] : "FTM Testnet",
+    [ChainID.BSC] : "BNB Chain Mainnet",
 }
 
 export const Explorers:IRpcUrls = {

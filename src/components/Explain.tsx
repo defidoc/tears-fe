@@ -9,6 +9,10 @@ const Explain = () => {
             <p>
                 No, not at this point. We just wanted to distribute them to comemorate these unfortunate events. Hopefully we will be able to provide liquidity in the future once the markets recover.
             </p>
+            <h2>Which network is this on?</h2>
+            <p>
+                BNB Chain (formerly Binance Smart Chain; BSC)
+            </p>
             <h2>What is the supply?</h2>
             <p>
                 Max and total supply is 10,000,000 $TEARS. 95% is in the faucet contract. the remaining 5% is left in the deployer wallet for future liquidity addition.
